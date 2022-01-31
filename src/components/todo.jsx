@@ -1,12 +1,24 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  removeTask,
+  toggleTaskStatus,
+} from '../store/todos-slice';
 
-const Todo = ({ id, text, completed, removeTodo, toggleTodoComplete }) => {
+const Todo = ({ id, completed, text }) => {
+  const dispatch = useDispatch();
+  const removeTodo = (id) => {
+    dispatch(removeTask({ id }));
+  };
+  const toggleTodoStatus = (id) => {
+    dispatch(toggleTaskStatus({ id }));
+  };
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
       <div>
         <input
           className="form-check-input me-2"
-          onChange={() => toggleTodoComplete(id)}
+          onChange={() => toggleTodoStatus(id)}
           type="checkbox"
           checked={completed}
           id={`cht${id}`}

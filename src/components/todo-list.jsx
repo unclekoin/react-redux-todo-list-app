@@ -5,7 +5,6 @@ import Todo from './todo';
 
 function TodoList() {
   const todos = useSelector(getTodos());
-  console.log(todos);
   return (
     <ul className="list-group">
       {todos.map((todo) => (

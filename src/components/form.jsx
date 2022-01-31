@@ -12,7 +12,7 @@ function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTask(text));
+    if (text.trim()) dispatch(addTask({text}));
     setText('');
   };
 
