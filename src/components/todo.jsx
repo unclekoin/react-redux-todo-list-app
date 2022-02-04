@@ -1,17 +1,17 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  removeTask,
-  toggleTaskStatus,
+  deleteTodo,
+  toggleStatusTodo,
 } from '../store/todos-slice';
 
-const Todo = ({ id, completed, text }) => {
+const Todo = ({ id, completed, title }) => {
   const dispatch = useDispatch();
   const removeTodo = (id) => {
-    dispatch(removeTask({ id }));
+    dispatch(deleteTodo(id));
   };
   const toggleTodoStatus = (id) => {
-    dispatch(toggleTaskStatus({ id }));
+    dispatch(toggleStatusTodo(id));
   };
   return (
     <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -21,6 +21,7 @@ const Todo = ({ id, completed, text }) => {
           onChange={() => toggleTodoStatus(id)}
           type="checkbox"
           checked={completed}
+          role="button"
           id={`cht${id}`}
         />
         <label
@@ -28,8 +29,9 @@ const Todo = ({ id, completed, text }) => {
             completed ? ' text-decoration-line-through' : ''
           }`}
           htmlFor={`cht${id}`}
+          role="button"
         >
-          {text}
+          {title}
         </label>
       </div>
       <i

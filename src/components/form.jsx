@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addTask } from '../store/todos-slice';
+import React, { useState} from 'react';
+import { useDispatch} from 'react-redux';
+import { createTodo } from '../store/todos-slice';
+
 
 function Form() {
-  const [text, setText] = useState('');
+  const [title, setTitle] = useState('');
   const dispatch = useDispatch();
 
   const handleChange = ({ target }) => {
-    setText(target.value);
+    setTitle(target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text.trim()) dispatch(addTask({text}));
-    setText('');
+    if (title.trim()) dispatch(createTodo(title));
+    setTitle('');
   };
 
   return (
     <form onSubmit={handleSubmit} className="d-flex align-items-center mb-5">
       <input
-        type="text"
-        value={text}
+        type="title"
+        value={title}
         className="form-control flex-grow-1 me-2"
-        placeholder="Enter text..."
+        placeholder="Enter something..."
         onChange={handleChange}
       />
       <button type="submit" className="btn btn-primary flex-shrink-0">
